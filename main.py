@@ -34,7 +34,12 @@ thue_morse_automata = cobham.output_automata(
 
 print("Mephisto-Waltz: Morfismo -> Automata")
 
-
 MW_automata = cobham.morphismToAutomata(mephisto_waltz_morphism,"0")
+#TM_automata = cobham.morphismToAutomata(thue_morse_morphism,"0")
+
+#print(str(mephisto_waltz_morphism))
+#print(mephisto_waltz_morphism._info())
+
+print(thue_morse_automata._info())
 
 print("\n \\\\------------------ITS OVER!------------------\\\\")
