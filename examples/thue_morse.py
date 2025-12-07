@@ -1,11 +1,11 @@
-#TODO hacer importacion correctamente para que funcione el ejemplo
+from .. import cobham
 
 thue_morse_transformations = {
     "0" : "01",
     "1" : "10"
 }
 
-thue_morse_morphism = cobham.morphism(h_transformations)
+thue_morse_morphism = cobham.morphism(thue_morse_transformations)
 
 thue_morse_automata = cobham.output_automata(
     2, #k-languages
@@ -28,8 +28,8 @@ print(f"Thue-morse morphism applied 2 times over 0110 is {thue_morse_morphism.ap
 print(f"the original morphism is: \n{thue_morse_morphism._info()}")
 print(f"the original automaton is: \n{thue_morse_automata._info()}")
 
-print(f"the result converting the morphism to a automaton is: \n{TM_automata._info()}")
-print(f"the result converting the automaton to a morphism is: \n{TM_morphism._info()}")
+print(f"\nthe result converting the morphism to a automaton is: \n{TM_automata._info()}")
+print(f"\nthe result converting the automaton to a morphism is: \n{TM_morphism._info()}")
 
 print(f"los morfismos de TM son iguales: {TM_morphism == thue_morse_morphism}")
 print(f"los automatas de TM son iguales: {TM_automata == thue_morse_automata}")
