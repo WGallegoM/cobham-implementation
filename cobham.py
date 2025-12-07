@@ -1,12 +1,53 @@
 class output_automata:
     def __init__(self,k,states,initial_state,transition_function,output_language,output_function):
-        self.language = k_language(k)
-        self.states = states        
-        self.initial_state = initial_state
+        #K-language
+        if isinstance(k,int):
+            if k>=1:
+                self.language = k_language(k)
+            else:
+                raise ValueError("k is less than 1, therefore there is no valid language")
+        else:
+            raise TypeError("No valid type for language, it must be a Int")
+
+        #STATES
+        if not isinstance(states,list):
+            raise TypeError("states must be a list")
+        if not all(isinstance(x,str) for x in states):
+            raise TypeError("All the elements of states must be strings")
+        else:
+            self.states = states        
+        
+        #INITIAL_STATE
+        if not isinstance(initial_state,str):
+            raise TypeError("initial_state must be a String")
+        else:
+            if not(initial_state in states):
+                raise ValueError("Initial_state is not in States")
+            else:
+                self.initial_state = initial_state
+        
         self.transition_function = transition_function
         self.output_language = output_language
-        self.output_function = output_function
+        
+        self.output_function = {}
 
+        if isinstance(output_function,list): 
+            """si output function es una lista,entonces al estado i
+            se le asigna el output i"""
+            if len(output_function) != len(states):
+                raise ValueError("the lenght of output_function is not the same as the quantity of states")
+            else:
+                for i in range(len(states)):
+                    self.output_function[states[i]] = output_function[i]   
+
+        elif isinstance(output_function,dict):
+            """Si output_function es diccionario se asigna
+            de inmediato como la funcion de output"""
+            if (set(states) != set(output_function.keys())):
+                raise ValueError("The keys of output_function are not the same as the states")
+
+            self.output_function = output_function
+            
     """def __init__(self,k,states,transition_function,output_language,output_function): #TODO Revisar Overwriting porque no se puede hacer
         self.language = k_language(k)
         self.states = states        
@@ -39,13 +80,27 @@ class output_automata:
         out += " ,".join(self.output_language)
 
         out += "\nOutput function: "
-        for i in range(len(self.output_function)):
-            out += f"{self.states[i]} -> {self.output_function[i]}, "
+        for key,value in self.output_function.items():
+            out += f"{key} -> {value}, "
 
         return out
 
-class sequence:
-    pass
+    def __eq__(self,otherAutomata):
+        isEqual = True #Se asumen iguales
+
+        if not isinstance(otherAutomata,output_automata):
+            return NotImplementedError
+        elif(
+            self.language == otherAutomata.language and
+            self.states == otherAutomata.states and            
+            self.initial_state == otherAutomata.initial_state and
+            self.transition_function == otherAutomata.transition_function and
+            self.output_language == otherAutomata.output_language and
+            self.output_function == otherAutomata.output_function 
+        ):
+            return True
+        else:
+            return False
 
 class morphism:
     """def __init__(self,language,transformations : dict):
@@ -61,7 +116,6 @@ class morphism:
         self.transformations = {}
         self.wellDefined = True
         self.prolongableOn = []
-
         self.isKUniform = len(next(iter(transformations.values()))) #se toma la longitud de la primera imagen
 
         for x in transformations:
@@ -96,6 +150,20 @@ class morphism:
         out += f"prolongable on: {", ".join(self.prolongableOn)}\n"
 
         return out
+    def __eq__(self,otherMorphism):
+
+        if not isinstance(otherMorphism,morphism):
+            return NotImplementedError
+        elif(
+            self.language == otherMorphism.language and                    
+            self.transformations == otherMorphism.transformations and                
+            self.wellDefined == otherMorphism.wellDefined and                
+            self.prolongableOn == otherMorphism.prolongableOn and                
+            self.isKUniform == otherMorphism.isKUniform        #TODO mirar como se puede debilitar las condiciones de igualdad           
+        ):
+            return True
+        else:
+            return False
 
     def _is_well_defined():
         """se verifica que todos los simbolos del lenguaje tenga una imagen
@@ -124,7 +192,20 @@ class morphism:
 def k_language(n):
     return [str(i) for i in range(n)]
 
+def automataToMorphism(M_automata:output_automata):
+    lenStates = len(M_automata.states)
+    h_images = []
+    k = len(M_automata.language)
+    h_morphism = {}
+
+    for i in range(lenStates):
+        #h_images.append("".join(M_automata.transition_function[i]))
+        h_morphism[M_automata.states[i]] = "".join(M_automata.transition_function[i])
+    
+    return morphism(h_morphism)
+
 def morphismToAutomata(h_morphism:morphism, prolongableOn:str):
+
     #VERIFICA LAS CONDICIONES SOBRE EL MORFISMO
 
     if h_morphism.isKUniform <= -1:
@@ -166,7 +247,7 @@ def morphismToAutomata(h_morphism:morphism, prolongableOn:str):
             if len(first_appearance) == language_len:
                 break #si ya se encontraron todos los caracteres se acaban los ciclos
 
-    output_function = {}
+    output_function = {} #TODO ajustar para que la comparacion de automatas sea correcta
 
     for key in first_appearance:
         output_function[key] = test_string[first_appearance[key]] 
@@ -183,3 +264,4 @@ def morphismToAutomata(h_morphism:morphism, prolongableOn:str):
     )
 
     return equivalent_automata
+
