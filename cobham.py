@@ -147,7 +147,8 @@ class morphism:
         else:
             out += "not k-uniform\n"
 
-        out += f"prolongable on: {", ".join(self.prolongableOn)}\n"
+        prolongableLista = ", ".join(self.prolongableOn)
+        out += f"prolongable on: {prolongableLista}\n"
 
         return out
     def __eq__(self,otherMorphism):

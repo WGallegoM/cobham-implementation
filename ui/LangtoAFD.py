@@ -10,6 +10,9 @@ class LangtoAFD(customtkinter.CTk):
         self.button1 = customtkinter.CTkButton(self, text="Volver", command=self.volver)
         self.button1.grid(row=2, column=0, padx=30, pady=(0, 20), sticky="w")
 
+    
+
+
     # Botón para volver
     def volver(self):
         print("Volver")
