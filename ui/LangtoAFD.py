@@ -20,7 +20,7 @@ class LangtoAFD(ctk.CTk):
         self.rows = 2
         self.cols = 2
         self.headers = ["Entrada", "Imagen Morfismo"]
-        self.entry_widgets = []  # List to hold the entry widgets
+        self.entry_widgets = []  
 
         # --- Table Frame ---
         self.table_frame = ctk.CTkFrame(self)
@@ -73,24 +73,20 @@ class LangtoAFD(ctk.CTk):
         # 1. Crear la ventana secundaria (Toplevel)
         nueva_ventana = tk.Toplevel()
         nueva_ventana.title("Ventana con Imagen")
-        nueva_ventana.geometry("900x700")
+        nueva_ventana.geometry("600x800")
 
         try:
-            # 2. Cargar la imagen
+            # Cargar la imagen
             # NOTA: Solo funciona con .png o .gif nativamente
             imagen = tk.PhotoImage(file="salida.png")
 
-            # 3. Mostrar la imagen en una etiqueta (Label)
             label_imagen = tk.Label(nueva_ventana, image=imagen)
             label_imagen.pack(expand=True)
-
-            # 4. ¡CRÍTICO! Guardar una referencia de la imagen
-            # Si no haces esto, Python borrará la imagen de la memoria y no se verá.
             label_imagen.image = imagen
             
         except Exception as e:
             print(f"Error al cargar la imagen: {e}")
-            lbl_error = tk.Label(nueva_ventana, text="No se encontró el archivo 'mi_imagen.png'")
+            lbl_error = tk.Label(nueva_ventana, text="No se encontró el archivo 'salida.png'")
             lbl_error.pack()
 
     def get_table_data(self):
@@ -119,8 +115,6 @@ class LangtoAFD(ctk.CTk):
             automataGenerado = morphismToAutomata(morfismoGenerado, estadoInicial)
 
             print(automataGenerado._info())
-            # Imprime el morfismo aplicado 2^n veces
-            self.status_label.configure(text=f"Primeros k^4 digitos: " + morfismoGenerado.apply(estadoInicial,4), text_color="green")
 
             # Usar pythomata para generar automata
             print(automataGenerado.transition_function)
@@ -145,7 +139,7 @@ class LangtoAFD(ctk.CTk):
             graph.render("salida")
 
             # Pasar de svg a png
-            png_data = cairosvg.svg2png(url="salida.svg" , write_to="salida.png",output_width=800, output_height=600)
+            png_data = cairosvg.svg2png(url="salida.svg" , write_to="salida.png",output_width=500, output_height=900)
             self.abrir_nueva_ventana()
             
             
