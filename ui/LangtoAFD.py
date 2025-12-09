@@ -6,18 +6,25 @@ from pythomata import SimpleDFA
 import io
 import cairosvg
 
+
+
 class LangtoAFD(ctk.CTk):
     def __init__(self):
         super().__init__()
         self.title("Cobham Implementación | Lenguaje a AFD")
         self.geometry("900x550")
         self.grid_columnconfigure((0, 1), weight=1)
+        # Variable para almacenar K
+        self.k_valor = 0
+
+        # En lugar de llamar a setup_ui directamente, llamamos a la pantalla de entrada
+        self.pantalla_pedir_k()
 
         self.toplevel_window = None
 
-
+    def setup_ui(self):
         # --- Table Configuration ---
-        self.rows = 2
+        self.rows = self.k_valor
         self.cols = 2
         self.headers = ["Entrada", "Imagen Morfismo"]
         self.entry_widgets = []  
@@ -68,7 +75,40 @@ class LangtoAFD(ctk.CTk):
         )
         self.submit_button.grid(row=1, column=0, padx=20, pady=(0, 20))
 
+    def pantalla_pedir_k(self):
+        """Muestra solo el input para K al inicio"""
+        
+        # Frame central para que se vea ordenado
+        self.frame_inicial = ctk.CTkFrame(self)
+        self.frame_inicial.place(relx=0.5, rely=0.5, anchor="center")
 
+        lbl = ctk.CTkLabel(self.frame_inicial, text="Ingrese el valor de K (tamaño del lenguaje):", font=("roboto", 16, "bold"))
+        lbl.pack(pady=20, padx=20)
+
+        self.entry_k_inicial = ctk.CTkEntry(self.frame_inicial, placeholder_text="Ej: 3", width=200)
+        self.entry_k_inicial.pack(pady=10)
+
+        btn_continuar = ctk.CTkButton(self.frame_inicial, text="Continuar", command=self.validar_y_avanzar)
+        btn_continuar.pack(pady=20)
+
+    def validar_y_avanzar(self):
+        """Valida que K sea un número y carga la UI principal"""
+        try:
+            valor = int(self.entry_k_inicial.get())
+            if valor < 1:
+                raise ValueError("El número debe ser mayor a 0")
+            
+            self.k_valor = valor
+            
+            # 1. Destruir el frame inicial para limpiar la ventana
+            self.frame_inicial.destroy()
+            
+            # 2. Ejecutar la UI principal ahora que tenemos el dato
+            self.setup_ui()
+        except ValueError:
+            # Usamos un print o messagebox si no es un número válido
+            print("Error: Por favor ingrese un número entero válido.")
+    
     def abrir_nueva_ventana(self):
         # 1. Crear la ventana secundaria (Toplevel)
         nueva_ventana = tk.Toplevel()

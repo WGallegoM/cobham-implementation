@@ -13,7 +13,7 @@
 <title>fake</title>
 </g>
 <!-- 0 -->
-<g id="node2" class="node">
+<g id="node3" class="node">
 <title>0</title>
 <ellipse fill="none" stroke="black" cx="27" cy="-118.5" rx="18" ry="18"/>
 <ellipse fill="none" stroke="black" cx="27" cy="-118.5" rx="22" ry="22"/>
@@ -25,40 +25,40 @@
 <path fill="none" stroke="black" stroke-width="2" d="M27,-177.1C27,-169.67 27,-160.73 27,-152.14"/>
 <polygon fill="black" stroke="black" stroke-width="2" points="30.5,-153.84 27,-143.84 23.5,-153.84 30.5,-153.84"/>
 </g>
+<!-- 1 -->
+<g id="node2" class="node">
+<title>1</title>
+<ellipse fill="none" stroke="black" cx="27" cy="-22" rx="18" ry="18"/>
+<ellipse fill="none" stroke="black" cx="27" cy="-22" rx="22" ry="22"/>
+<text xml:space="preserve" text-anchor="middle" x="27" y="-16.95" font-family="Times New Roman,serif" font-size="14.00">1</text>
+</g>
+<!-- 1&#45;&gt;1 -->
+<g id="edge5" class="edge">
+<title>1&#45;&gt;1</title>
+<path fill="none" stroke="black" d="M47.58,-30.78C57.84,-31.99 67,-29.07 67,-22 67,-17.8 63.77,-15.07 59,-13.79"/>
+<polygon fill="black" stroke="black" points="59.25,-10.3 49.09,-13.3 58.91,-17.29 59.25,-10.3"/>
+<text xml:space="preserve" text-anchor="middle" x="70.38" y="-16.95" font-family="Times New Roman,serif" font-size="14.00">1</text>
+</g>
+<!-- 1&#45;&gt;0 -->
+<g id="edge2" class="edge">
+<title>1&#45;&gt;0</title>
+<path fill="none" stroke="black" d="M27,-44.36C27,-56.31 27,-71.45 27,-84.85"/>
+<polygon fill="black" stroke="black" points="23.5,-84.54 27,-94.54 30.5,-84.54 23.5,-84.54"/>
+<text xml:space="preserve" text-anchor="middle" x="30.38" y="-65.2" font-family="Times New Roman,serif" font-size="14.00">0</text>
+</g>
+<!-- 0&#45;&gt;1 -->
+<g id="edge3" class="edge">
+<title>0&#45;&gt;1</title>
+<path fill="none" stroke="black" d="M19.86,-97.29C16.97,-86.81 14.66,-73.77 16.25,-62 16.59,-59.51 17.04,-56.96 17.57,-54.41"/>
+<polygon fill="black" stroke="black" points="20.92,-55.45 19.9,-44.9 14.12,-53.78 20.92,-55.45"/>
+<text xml:space="preserve" text-anchor="middle" x="19.62" y="-65.2" font-family="Times New Roman,serif" font-size="14.00">0</text>
+</g>
 <!-- 0&#45;&gt;0 -->
 <g id="edge4" class="edge">
 <title>0&#45;&gt;0</title>
 <path fill="none" stroke="black" d="M47.99,-125.91C58.09,-126.82 67,-124.35 67,-118.5 67,-115.02 63.86,-112.74 59.19,-111.65"/>
 <polygon fill="black" stroke="black" points="59.66,-108.17 49.5,-111.17 59.31,-115.16 59.66,-108.17"/>
 <text xml:space="preserve" text-anchor="middle" x="70.38" y="-113.45" font-family="Times New Roman,serif" font-size="14.00">1</text>
-</g>
-<!-- 1 -->
-<g id="node3" class="node">
-<title>1</title>
-<ellipse fill="none" stroke="black" cx="27" cy="-22" rx="18" ry="18"/>
-<ellipse fill="none" stroke="black" cx="27" cy="-22" rx="22" ry="22"/>
-<text xml:space="preserve" text-anchor="middle" x="27" y="-16.95" font-family="Times New Roman,serif" font-size="14.00">1</text>
-</g>
-<!-- 0&#45;&gt;1 -->
-<g id="edge5" class="edge">
-<title>0&#45;&gt;1</title>
-<path fill="none" stroke="black" d="M19.86,-97.29C16.97,-86.81 14.66,-73.77 16.25,-62 16.59,-59.51 17.04,-56.96 17.57,-54.41"/>
-<polygon fill="black" stroke="black" points="20.92,-55.45 19.9,-44.9 14.12,-53.78 20.92,-55.45"/>
-<text xml:space="preserve" text-anchor="middle" x="19.62" y="-65.2" font-family="Times New Roman,serif" font-size="14.00">0</text>
-</g>
-<!-- 1&#45;&gt;0 -->
-<g id="edge3" class="edge">
-<title>1&#45;&gt;0</title>
-<path fill="none" stroke="black" d="M27,-44.36C27,-56.31 27,-71.45 27,-84.85"/>
-<polygon fill="black" stroke="black" points="23.5,-84.54 27,-94.54 30.5,-84.54 23.5,-84.54"/>
-<text xml:space="preserve" text-anchor="middle" x="30.38" y="-65.2" font-family="Times New Roman,serif" font-size="14.00">0</text>
-</g>
-<!-- 1&#45;&gt;1 -->
-<g id="edge2" class="edge">
-<title>1&#45;&gt;1</title>
-<path fill="none" stroke="black" d="M47.58,-30.78C57.84,-31.99 67,-29.07 67,-22 67,-17.8 63.77,-15.07 59,-13.79"/>
-<polygon fill="black" stroke="black" points="59.25,-10.3 49.09,-13.3 58.91,-17.29 59.25,-10.3"/>
-<text xml:space="preserve" text-anchor="middle" x="70.38" y="-16.95" font-family="Times New Roman,serif" font-size="14.00">1</text>
 </g>
 </g>
 </svg>
