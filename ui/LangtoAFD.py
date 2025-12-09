@@ -158,16 +158,15 @@ class LangtoAFD(ctk.CTk):
 
             # Usar pythomata para generar automata
             print(automataGenerado.transition_function)
-            funcionTransicion = {
-                '0' : {
-                    '0': '1',
-                    '1':'0' 
-                },
-                '1':{
-                    '0':'0',
-                    '1':'1'
-                }
-            }
+            funcionTransicion = {}
+            for i in range(len(automataGenerado.states)):
+                funcionTransicion[automataGenerado.states[i]] = {}
+
+                for q_i in range(len(automataGenerado.language)):
+                    funcionTransicion[automataGenerado.states[i]][automataGenerado.language[q_i]] = automataGenerado.transition_function[i][q_i]
+            
+            print("REVISAR:", funcionTransicion)
+            
             print(automataGenerado.output_function)
             print(set(automataGenerado.states))
             print(set(automataGenerado.language))
@@ -179,7 +178,7 @@ class LangtoAFD(ctk.CTk):
             graph.render("salida")
 
             # Pasar de svg a png
-            png_data = cairosvg.svg2png(url="salida.svg" , write_to="salida.png",output_width=500, output_height=900)
+            png_data = cairosvg.svg2png(url="salida.svg" , write_to="salida.png",output_width=500, output_height=800)
             self.abrir_nueva_ventana()
             
             
